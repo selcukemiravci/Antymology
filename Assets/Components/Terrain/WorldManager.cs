@@ -381,21 +381,21 @@ namespace Antymology.Terrain
             int updateY = Mathf.FloorToInt(worldYCoordinate / ConfigurationManager.Instance.Chunk_Diameter);
             int updateZ = Mathf.FloorToInt(worldZCoordinate / ConfigurationManager.Instance.Chunk_Diameter);
             Chunks[updateX, updateY, updateZ].updateNeeded = true;
-            
+
             // Also flag all 6 neighbours for update as well
-            if(updateX - 1 >= 0)
+            if (updateX - 1 >= 0)
                 Chunks[updateX - 1, updateY, updateZ].updateNeeded = true;
-            if (updateX + 1 < Chunks.GetLength(0))
+            if (updateX + 1 < Chunks.GetLength(0) - 2)
                 Chunks[updateX + 1, updateY, updateZ].updateNeeded = true;
 
             if (updateY - 1 >= 0)
                 Chunks[updateX, updateY - 1, updateZ].updateNeeded = true;
-            if (updateY + 1 < Chunks.GetLength(1))
+            if (updateY + 1 < Chunks.GetLength(1) - 2)
                 Chunks[updateX, updateY + 1, updateZ].updateNeeded = true;
 
             if (updateZ - 1 >= 0)
                 Chunks[updateX, updateY, updateZ - 1].updateNeeded = true;
-            if (updateX + 1 < Chunks.GetLength(2))
+            if (updateZ + 1 < Chunks.GetLength(2) - 2)
                 Chunks[updateX, updateY, updateZ + 1].updateNeeded = true;
         }
 
