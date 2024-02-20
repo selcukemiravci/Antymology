@@ -93,8 +93,30 @@ namespace Antymology.Terrain
         /// </summary>
         private void GenerateAnts()
         {
-            throw new NotImplementedException();
+            // Assuming the world's surface is at a certain height - adjust this as needed.
+            int surfaceY = ConfigurationManager.Instance.World_Height * ConfigurationManager.Instance.Chunk_Diameter - 1;
+
+            for (int i = 0; i < NumberOfAnts; i++)
+            {
+                // Generate a random position within the world bounds for each ant.
+                int x = RNG.Next(0, ConfigurationManager.Instance.World_Diameter * ConfigurationManager.Instance.Chunk_Diameter);
+                int z = RNG.Next(0, ConfigurationManager.Instance.World_Diameter * ConfigurationManager.Instance.Chunk_Diameter);
+
+                // Find the first non-air block from the top down at the (x, z) position.
+                // This loop assumes that the y-coordinate starts from the top of the world.
+                for (int y = surfaceY; y >= 0; y--)
+                {
+                    if (!(Blocks[x, y, z] is AirBlock))
+                    {
+                        // Spawn the ant just above the first non-air block found.
+                        Vector3 spawnPosition = new Vector3(x, y + 1, z);
+                        Instantiate(antPrefab, spawnPosition, Quaternion.identity);
+                        break; // Stop searching once we've found a place to spawn the ant.
+                    }
+                }
+            }
         }
+
 
         #endregion
 
