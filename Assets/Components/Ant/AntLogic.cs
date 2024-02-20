@@ -3,7 +3,7 @@
 namespace Components.Ant
 {
     // Defines settings for ants, including health and behavior parameters.
-    [CreateAssetMenu(fileName = "AntSettings", menuName = "Simulation/AntSettings", order = 1)]
+    [CreateAssetMenu(fileName = "Ants", menuName = "Simulation/Ants", order = 1)]
     public class AntSettings : ScriptableObject
     {
         [Tooltip("Health that each ant starts at")]
