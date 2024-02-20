@@ -12,6 +12,11 @@ namespace Antymology.Terrain
         #region Fields
 
         /// <summary>
+        /// The ant spawns at the start of the game.
+        /// </summary>
+        public int NumberOfAnts;
+
+        /// <summary>
         /// The prefab containing the ant.
         /// </summary>
         public GameObject antPrefab;
